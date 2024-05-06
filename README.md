@@ -19,3 +19,5 @@ To begin using the webpage as intended, please start with the file ownerbiograph
 The backend Javascript can be accessed via the index.mjs file, in which a calculation of the cart total is attempted to be calculated. I admittedly could not get this to work, so apologies for that.
 
 Thank you for a wonderful semester.
+
+Note: I wasn't able to commit directly through Visual Studio, and GitHub does not allow me to upload more than 100 files at a time, so I uploaded my backend Javascript file directly, but the modules unfortunately were not able to carry over. I'll upload as many as I can before the deadline.
