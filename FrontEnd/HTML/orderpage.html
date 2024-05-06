@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html>
+    <title>Order Page</title>
+
+    <head>
+        <link rel="stylesheet" href="../CSS/style.css">
+    </head>
+
+    <body>
+        <!--Header-->
+        <header>
+            <img src="../Images/CAFE EASE.png" alt="logo" class="logo" align="center">
+        </header>
+
+        <!--Top Navigation-->
+        <div class="topnav">
+            <a href="../HTML/contact.html">Contact</a>
+            <a href="../HTML/about.html">About</a>
+            <a href="../HTML/homepage.html">Home</a>
+        </div>
+
+        <!--Introduction-->
+        <h1>Cafe Ease's Order Page</h1>
+        <h2>Ready to take a bite into our delicious menu? First things first, you have to complete your order!</h2>
+        <p align="center">To begin, please add items to your orders and set their quantity, along with leave any additional instructions. From there, you will fill out your information to ensure your order is confirmed!</p>
+    
+        <div>
+            <!--Ordering Food-->
+            <fieldset>
+                <legend>Food and Drink</legend>
+
+                <!--Non Caffeinated Drinks-->
+                <legend><b>Non-Caffeinated Drinks: $4</b></legend>
+                    <input type="radio" name="drink01" id="water" >Water<br>
+                    <input type="radio" name="drink01" id="drPepper" >Dr Pepper <br>
+                    <input type="radio" name="drink01" id="pepsi" >Pepsi <br>
+                    <input type="radio" name="drink01" id="sprite" >Sprite<br>
+                    <input type="radio" name="drink01" id="lemonade" >Lemonade<br>
+                    <input type="radio" name="drink01" id="powerade" >Powerade<br>
+                <input type:"number" id="quantityValue1" class="quantityValue">
+                <button class="orderQuantity" onclick="addDrink()">+</button>
+                <button class="orderQuantity" onclick="subDrink()">-</button>
+                <br>
+
+                <!--Caffeinated Drinks-->
+                <legend><b>Caffeinated Drinks: $4</b></legend>
+                    <input type="radio" name="drink02" id="latte" >Latte<br>
+                    <input type="radio" name="drink02" id="mocha" >Mocha<br>
+                    <input type="radio" name="drink02" id="cappuccino" >Cappuccino<br>
+                    <input type="radio" name="drink02" id="coldbrew" >Cold Brew<br>
+                    <input type="radio" name="drink02" id="americano" >Americano<br>
+                <input type:"number" id="quantityValue2" class="quantityValue">
+                <button class="orderQuantity" onclick="addCafDrink()">+</button>
+                <button class="orderQuantity" onclick="subCafDrink()">-</button>
+                <p>Your total amount of drinks is: <span id="drinkResult"></span></p>
+
+
+                <!--Food-->
+                <legend><b>Food: $6</b></legend>
+                    <input type="radio" name="food01" id="plainBagel">Plain Bagel<br>
+                    <input type="radio" name="food01" id="everyBagel">Everything Bagel<br>
+                    <input type="radio" name="food01" id="butCroissant">Butter Croissant<br>
+                    <input type="radio" name="food01" id="hamQuiche">Ham & Cheese Quiche<br>
+                    <input type="radio" name="food01" id="chickenPot">Chicken Pot Pie<br>
+                <input type:"number" id="quantityValue3" class="quantityValue">
+                <button class="orderQuantity" onclick="addFood()">+</button>
+                <button class="orderQuantity" onclick="subFood()">-</button>
+                <p>Your total amount of food items is: <span id="foodResult"></span></p>
+
+                
+                <!--Desserts-->
+                <legend><b>Desserts: $4</b></legend>
+                    <input type="radio" name="dessert01" id="cake" >Slice of Cake<br>
+                    <input type="radio" name="dessert01" id="cupcake">Cupcake<br>
+                    <input type="radio" name="dessert01" id="chocCroissant">Chocolate Croissant<br>
+                    <input type="radio" name="dessert01" id="cakepop">Cakepop<br>
+                    <input type="radio" name="dessert01" id="pie">Slice of Pie<br>
+                    <input type="radio" name="dessert01" id="cookie">Cookie<br>
+                <input type:"number" id="quantityValue4" class="quantityValue">
+                <button class="orderQuantity" onclick="addDessert()">+</button>
+                <button class="orderQuantity" onclick="subDessert()">-</button>
+                <p>Your total amount of desserts is: <span id="dessertResult"></span></p>
+
+                <button class="orderAdd" onclick="addOrder()">Add to Cart</button>
+            </fieldset>
+
+            <!--Current Cart-->
+            <fieldset id>
+                <legend>Current Cart</legend>
+                <p>You have a total of <span id="totalResult"></span> items in your cart.</p>
+
+                <input id="specialInstructions" type:"text" placeholder="Please put special instructions here.">
+            </fieldset>
+            
+            <!--Personal Information-->
+            <fieldset>
+                <legend>Personal Information</legend>
+                Name for Order: <input type:"text" placeholder="Full Name" id="fname"> <br>
+                E-Mail: <input type:"text" placeholder="Email Address" id="email"> <br>
+                Day for Pickup: <input type="date" id="tdate"><br>
+                Payment Type:
+                <input type="radio" name="payment">Card 
+                <input type="radio" name="payment">Cash<br>
+            </fieldset>
+            <br>
+            </div>
+
+            <!--Total Price-->
+            <fieldset id>
+                <legend>Total</legend>
+                <p>Your subtotal price for all your items is: $<span id="moneySubresult"></span></p>
+                <p>Your total price for all your items is: $<span id="moneyResult"></span></p>
+            </fieldset>
+            
+
+            <!--Submit Order-->
+            <form method="post" action="/submit">
+                    <button onclick="alert('Your order has been submitted!')">Submit Order Now</button> 
+            </form>            
+
+        <!--JavaScripts-->
+          <script>
+            /*Total Amts*/
+            var drinkAmt = 0;
+            var foodAmt = 0;
+            var dessertAmt = 0;
+            var totalAmt =0;
+
+                    // noncaf drink variables
+                    var waterAmt =5;
+                    var drPepperAmt =4;
+                    var pepsiAmt =3;
+                    var spriteAmt =2;
+                    var lemonadeAmt =1;
+                    var poweradeAmt =1;
+                
+                    // caf drink variables
+                    var latteAmt =5;
+                    var mochaAmt =4;
+                    var cappuccinoAmt =3;
+                    var coldbrewAmt =2;
+                    var americanoAmt =1;
+
+                    // food variables
+                    var plainBagelAmt =5;
+                    var everyBagelAmt =4;
+                    var butCroissantAmt =3;
+                    var hamQuicheAmt =2;
+                    var chickenPotAmt =1;
+
+                    // dessert variables
+                    var cakeAmt =6;
+                    var cupcakeAmt =2;
+                    var chocCroissantAmt =3;
+                    var cakepopAmt =1;
+                    var pieAmt =5;
+                    var cookieAmt =4;
+
+                    //money total
+                    var moneyTotal =0;
+        
+		    /*Functions*/
+
+            /*Add Non-Caffeinated Drink*/
+            function addDrink() {
+            var value1 = document.getElementById("quantityValue1").value;
+            var checkboxes = document.getElementsByName('drink01');
+            var checked = false;
+
+            if (value1 == 0) {
+                document.getElementById("drinkResult").innerHTML = drinkAmt;
+                alert('Please input a quantity.');
+                return;
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checked = true;
+                    break;
+                }
+            }
+
+            if (!checked) {
+                alert('Please select an item.');
+            } else {
+                if (waterAmt < value1 || drPepperAmt < value1 || pepsiAmt < value1 || spriteAmt < value1 || lemonadeAmt < value1 || poweradeAmt < value1) {
+                    alert('Our apologies, but the quantity entered can not be fulfilled due to limited stock. Please lower the quantity to continue.');
+                } else {
+                    drinkAmt = (+drinkAmt) + (+value1);
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                }
+            }
+            }
+
+            /*Add Caffeinated Drink*/
+            function addCafDrink() {
+            var value2 = document.getElementById("quantityValue2").value;
+            var checkboxes = document.getElementsByName('drink02');
+            var checked = false;
+
+            if (value2 == 0) {
+                document.getElementById("drinkResult").innerHTML = drinkAmt;
+                alert('Please input a quantity.');
+                return;
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checked = true;
+                    break;
+                }
+            }
+
+            if (!checked) {
+                alert('Please select an item.');
+            } else {
+                if (latteAmt < value2 || mochaAmt < value2 || cappuccinoAmt < value2 || coldbrewAmt < value2 || americanoAmt < value2) {
+                    alert('Our apologies, but the quantity entered can not be fulfilled due to limited stock. Please lower the quantity to continue.');
+                } else {
+                    drinkAmt = (+drinkAmt) + (+value2);
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                }
+            }
+            }
+            
+
+            /*Add Food*/
+            function addFood() {
+            var value3 = document.getElementById("quantityValue3").value;
+            var checkboxes = document.getElementsByName('food01');
+            var checked = false;
+
+            if (value3 == 0) {
+                document.getElementById("foodResult").innerHTML = foodAmt;
+                alert('Please input a quantity.');
+                return;
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checked = true;
+                    break;
+                }
+            }
+
+            if (!checked) {
+                alert('Please select an item.');
+            } else {
+                if (plainBagelAmt < value3 || everyBagelAmt < value3 || butCroissantAmt < value3 || hamQuicheAmt < value3 || chickenPotAmt < value3) {
+                    alert('Our apologies, but the quantity entered can not be fulfilled due to limited stock. Please lower the quantity to continue.');
+                } else {
+                    foodAmt = (+foodAmt) + (+value3);
+                    document.getElementById("foodResult").innerHTML = foodAmt;
+                }
+            }
+            }
+
+            /*Add Dessert*/
+            function addDessert() {
+            var value4 = document.getElementById("quantityValue4").value;
+            var checkboxes = document.getElementsByName('dessert01');
+            var checked = false;
+
+            if (value4 == 0) {
+                document.getElementById("dessertResult").innerHTML = dessertAmt;
+                alert('Please input a quantity.');
+                return;
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checked = true;
+                    break;
+                }
+            }
+
+            if (!checked) {
+                alert('Please select an item.');
+            } else {
+                if (cakeAmt < value4 || cupcakeAmt < value4 || chocCroissantAmt < value4 || cakepopAmt < value4 || pieAmt < value4 || cookieAmt < value4) {
+                    alert('Our apologies, but the quantity entered can not be fulfilled due to limited stock. Please lower the quantity to continue.');
+                } else {
+                    dessertAmt = (+dessertAmt) + (+value4);
+                    document.getElementById("dessertResult").innerHTML = dessertAmt;
+                }
+            }
+            }
+            
+            /*Subtract Non-Caffeinated Drink*/
+            function subDrink() {
+                var value8 = document.getElementById("quantityValue1").value;
+
+                if (drinkAmt <= 0) {
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                    alert('Please add items.')
+                };
+
+                if (value8 == 0) {
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                    alert('Please input a quantity.')
+                };
+
+                if (value8 >= 1, drinkAmt > 0) {
+                    drinkAmt =(+drinkAmt)- (+value8);
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                };
+            }
+
+            /*Subtract Caffeinated Drink*/
+            function subCafDrink() {
+                var value9 = document.getElementById("quantityValue2").value;
+
+                if (drinkAmt <= 0) {
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                    alert('Please add items.')
+                };
+
+                if (value9 == 0) {
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                    alert('Please input a quantity.')
+                };
+
+                if (value9 >= 1, drinkAmt > 0) {
+                    drinkAmt =(+drinkAmt)- (+value9);
+                    document.getElementById("drinkResult").innerHTML = drinkAmt;
+                };
+            }
+
+            /*Subtract Food*/
+            function subFood() {
+                var value10 = document.getElementById("quantityValue3").value;
+
+                if (foodAmt <= 0) {
+                    document.getElementById("foodResult").innerHTML = foodAmt;
+                    alert('Please add items.')
+                };
+
+                if (value10 == 0) {
+                    document.getElementById("foodResult").innerHTML = foodAmt;
+                    alert('Please input a quantity.')
+                };
+
+                if (value10 >= 1, foodAmt > 0) {
+                    foodAmt =(+foodAmt)- (+value10);
+                    document.getElementById("foodResult").innerHTML = foodAmt;
+                };
+            }
+
+            /*Subtract Dessert*/
+            function subDessert() {
+                var value11 = document.getElementById("quantityValue4").value;
+
+                if (dessertAmt <= 0) {
+                    document.getElementById("dessertResult").innerHTML = dessertAmt;
+                    alert('Please add items.')
+                };
+
+                if (value11 == 0) {
+                    document.getElementById("dessertResult").innerHTML = dessertAmt;
+                    alert('Please input a quantity.')
+                };
+
+                if (value11 >= 1, dessertAmt > 0) {
+                    dessertAmt =(+dessertAmt)- (+value11);
+                    document.getElementById("dessertResult").innerHTML = dessertAmt;
+                };
+            }
+
+            /*Total Up All Item Values*/
+            function addOrder() {
+                var value5 = drinkAmt;
+                var value6 = foodAmt;
+                var value7 = dessertAmt;
+
+                var value8 = (+drinkAmt)*(+4);
+                var value9 = (+foodAmt)*(+6);
+                var value10 = (+dessertAmt)*(+4);
+
+                var moneySub = (+value8)+ (+value9)+ (+value10);
+                var moneyTot = moneySub*1.0825;
+
+                moneyTot = parseFloat(moneyTot.toFixed(2));
+
+                totalAmt = (+value5)+ (+value6)+ (+value7);
+                document.getElementById("totalResult").innerHTML = totalAmt;
+
+
+                document.getElementById("moneySubresult").innerHTML = moneySub;
+                document.getElementById("moneyResult").innerHTML = moneyTot;
+
+            }
+
+            document.getElementById("totalResult").innerHTML = totalAmt;
+
+          </script>
+
+          <br><br>
+        <!--Footer-->
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="../HTML/menupage.html">Menu</a></li>
+                    <li><a href="../HTML/orderpage.html">Order Food</a></li>
+                    <li><a href="../HTML/faq.html">Frequently Asked Questions</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
