@@ -1,0 +1,189 @@
+<html>
+    <title>Menu</title>
+    <head>
+        <link rel="stylesheet" href="../CSS/style.css">
+    </head>
+    <body>
+        <!--Header-->
+        <header>
+            <img src="../Images/CAFE EASE.png" alt="logo" class="logo" align="center">
+        </header>
+
+        <!--Top Navigation-->
+        <div class="topnav">
+            <a href="../HTML/contact.html">Contact</a>
+            <a href="../HTML/about.html">About</a>
+            <a href="../HTML/homepage.html">Home</a>
+        </div>
+
+        <!--Introduction-->
+        <h1>Cafe Ease's Menu</h1>
+        <p>At Cafe Ease, we strive to make our menu as special as our service. You can find our complete menu here, along with our daily specials. At the bottom of the page is a place to request special allergen foods, such as requests for milk alternatives or gluten-free desserts. You can also leave any additional requests about our menu at the bottom of the page!</p>
+
+        <!--Day to Day Menu-->
+        <h2>Every Day Menu</h2>
+        <img src="../Images/Coffee.jpg" width="100%">
+        <p align="center">Everything here is made to available to you any and every day of the week!</p>
+
+        <div class="menuItems">
+            <button onclick="displayDrinks()">Drinks</button>
+            <button onclick="displayFood()">Food</button>
+            <button onclick="displayDesserts()">Dessert</button>
+        </div>
+
+        <!--Drink List-->
+        <div id="textDrinks" style="display: none;">
+        <br>
+         We offer three different sizes for all drinks: Small, Medium, and Large.
+        <br> <br>
+        <u>Non-Caffeinated Drinks</u>
+        <list>
+            <ul>Water</ul>
+            <ul>Dr. Pepper</ul>
+            <ul>Pepsi</ul>
+            <ul>Sprite</ul>
+            <ul>Lemonade</ul>
+            <ul>Powerade</ul>
+        </list>
+
+        <br>
+        <u>Coffee Drinks</u>
+        <list>
+            <ul>Latte</ul>
+            <ul>Mocha</ul>
+            <ul>Cappuccino</ul>
+            <ul>Cold Brew</ul>
+            <ul>Americano</ul>
+        </list>
+        <br>
+        We have a variety of syrups and milk alternatives such as almond, soy, and oat.
+        </div>
+
+        <!--Food List-->
+        <div id="textFood" style="display: none;">
+        <br>
+        All food is freshly prepared in house each morning.
+        <br>
+            <list>
+                <ul>Plain Bagel</ul>
+                <ul>Everything Bagel</ul>
+                <ul>Butter Croissant</ul>
+                <ul>Ham and Cheese Quiche</ul>
+                <ul>Chicken Pot Pie</ul>
+            </list>
+        <br>
+        Flavours vary every week, so please check it out each week!
+        </div>
+
+        <!--Dessert List-->
+        <div id="textDesserts" style="display: none;">
+        <br>
+        All desserts are freshly prepared in house each morning.
+        <br>
+            <list>
+                <ul>Slice of Cake</ul>
+                <ul>Cupcake</ul>
+                <ul>Chocolate Croissant</ul>
+                <ul>Cakepop</ul>
+                <ul>Slice of Pie</ul>
+                <ul>Cookie</ul>
+            </list>
+        <br>
+        Flavours vary every week, so please check it out each week!
+        </div>
+        <br><br>
+
+        <!--To Show/Hide Text-->
+        <script>
+            function displayDrinks() {
+            var drink = document.getElementById("textDrinks");
+            var dessert = document.getElementById("textDesserts");
+            var food = document.getElementById("textFood");            
+            drink.style.display = "block";
+            food.style.display = "none";
+            dessert.style.display = "none";
+            }
+
+            function displayFood() {
+            var drink = document.getElementById("textDrinks");
+            var dessert = document.getElementById("textDesserts");
+            var food = document.getElementById("textFood");
+            drink.style.display = "none";
+            food.style.display = "block";
+            dessert.style.display = "none";            }
+
+            function displayDesserts() {
+            var drink = document.getElementById("textDrinks");
+            var dessert = document.getElementById("textDesserts");
+            var food = document.getElementById("textFood");            
+            drink.style.display = "none";
+            food.style.display = "none";
+            dessert.style.display = "block";            }
+        </script>
+
+        <!--Daily Specials-->
+        <h2>Daily Specials</h2>
+        <img src="../Images/Desserts3.jpg" width="100%">
+        <p align="center">Our daily specials are bound to excite! There's nothing like waking up to something fresh!</p>
+        <table id="t01" border="3" align="center">
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+            <tr align="center">
+                <td><u>"Donut-cha Miss Me?"</u><br>Come dig in and start the week with a delicious donut to make you feel sweeter! <br><img src="../Images/donut.jpg" width=100px height=100px></td>
+                <td><u>"Love You a Latte!"</u>" - Buy one, get one! Share a latte with a friend to make your Mondays bright!<br><img src="../Images/latte.jpg" width=100px height=100px></td>
+                <td><u>"Save Me a Slice!"</u><br>Can't get enough of our cakes? No problem, as we have 50% off slices just for you every week!<br><img src="../Images/lemon.jpg" width=100px height=100px></td>
+                <td><u>"A Bitesize Day"</u><br>Miniature everything! Selling cupcakes of its miniature size to encourage everyone to take just one bite!<br><img src="../Images/cupcake.jpg" width=100px height=100px></td>
+                <td><u>"To Mocha Your Day!"</u><br>Want a swing of chocolate without the hassle? Come stop by and get yourself a mocha, and we promise it'll be a brew-tiful day!<br><img src="../Images/mocha.jpg" width=100px height=100px></td>
+                <td><u>"In Pie We Crust!"</u><br>Nothing to end a hard week with a delicious pie! Come join in the fun with three differents flavours every week!<br><img src="../Images/cherry.jpg" width=100px height=100px></td>
+                <td><u>"Crepes Out!"</u><br>The weekend is here, and you should be too! With delicious crepes only available on Saturdays, we're sure to dig in here!<br><img src="../Images/crepe.jpg" width=100px height=100px></td>
+            </tr>
+        </table>
+
+        <!--Order Food-->
+        <h1>Ready to Order?</h1>
+        <a href="../HTML/orderpage.html">
+            <button id="orderTransition">Click here to start your order!</button>
+            </a>
+        <br><br>
+
+        <!--Food Allergen Form-->
+        <h1>Have a food/allergen request?</h1>
+        <div id="allergyForm">
+            <form method="post">
+                Name: <input type:"text" placeholder="Enter Your First Name" id="fname" required> <br> <br>
+                E-Mail: <input type:"text" placeholder="Enter Your Email Address" id="email" required> <br> <br>
+
+                Type of Request <br>
+                <input type="radio" name="r01" required> Food Request
+                <input type="radio" name="r01" required> Allergen Request
+                <br> <br>
+
+                Please leave your request here! <br>
+                <input type="text" id="t03" placeholder="Type your message here..." size="45px" height="20px">
+                <br> <br>
+
+                <button id="b02">Submit</button>
+                </form>
+        </div>
+
+        <br> <br>
+
+        <!--Footer-->
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="../HTML/menupage.html">Menu</a></li>
+                    <li><a href="../HTML/orderpage.html">Order Food</a></li>
+                    <li><a href="../HTML/faq.html">Frequently Asked Questions</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
